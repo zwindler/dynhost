@@ -1,0 +1,49 @@
+#! /bin/sh
+################################################################################
+#This file is part of zwindler/dynhost
+#Copyright (C) 2016  Denis GERMAIN
+#
+#This program is free software: you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation, either version 3 of the License, or
+#(at your option) any later version.
+#
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+#
+#You should have received a copy of the GNU General Public License
+#along with this program.  If not, see <http://www.gnu.org/licenses/>.
+################################################################################
+#Logfile: dynhost.log
+#
+#CHANGE: « HOST », « LOGIN », « PASSWORD » and « LOG_FILE » to reflect YOUR account variables
+#OR: use, in argument, a custom file contains « HOST », « LOGIN », « PASSWORD » and « LOG_FILE »
+
+if [ -f "$1" ]; then
+  . $1
+else
+  HOST=DYNHOST.VOTREDOMAIN.FR
+  LOGIN=VOTREDOMAINOVH-LOGIN
+  PASSWORD=VOTREMDP
+  LOG_FILE='/usr/local/dynhost.log'
+fi
+
+echo ---------------------------------- >> $LOG_FILE
+echo `date` >> $LOG_FILE
+
+IP=`curl https://4.ifcfg.me`
+OLDIP=`dig +short $HOST`
+
+if [ "$IP" ]; then
+  if [ "$OLDIP" != "$IP" ]; then
+    echo -n "Old IP: [$OLDIP]" >> $LOG_FILE
+    echo -n "New IP: [$IP]" >> $LOG_FILE
+    wget -q -O - 'http://www.ovh.com/nic/update?system=dyndns&hostname='$HOST'&myip='$IP --user=$LOGIN --password=$PASSWORD >> $LOG_FILE
+  else
+    echo "Notice: IP $HOST [$OLDIP] is identical to WAN [$IP]! No update required." >> $LOG_FILE
+  fi
+else
+  echo "Error: WAN IP not found. Exiting!" >> $LOG_FILE
+fi
