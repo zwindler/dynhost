@@ -24,13 +24,13 @@
 if [ -f "$1" ]; then
   . $1
 else
-  HOST=DYNHOST.VOTREDOMAIN.FR
-  LOGIN=VOTREDOMAINOVH-LOGIN
-  PASSWORD=VOTREMDP
+  HOST='DYNHOST.VOTREDOMAIN.FR'
+  LOGIN='VOTREDOMAINOVH-LOGIN'
+  PASSWORD='VOTREMDP'
   LOG_FILE='/usr/local/dynhost/dynhost.log'
 fi
 
-echo ---------------------------------- >> $LOG_FILE
+echo '----------------------------------' >> $LOG_FILE
 echo `date` >> $LOG_FILE
 
 IP=`curl https://4.ifcfg.me`
