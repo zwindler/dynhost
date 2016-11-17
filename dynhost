@@ -27,7 +27,7 @@ else
   HOST=DYNHOST.VOTREDOMAIN.FR
   LOGIN=VOTREDOMAINOVH-LOGIN
   PASSWORD=VOTREMDP
-  LOG_FILE='/usr/local/dynhost.log'
+  LOG_FILE='/usr/local/dynhost/dynhost.log'
 fi
 
 echo ---------------------------------- >> $LOG_FILE
