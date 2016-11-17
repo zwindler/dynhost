@@ -1,5 +1,5 @@
 # dynhost
-Homemade script similar to update periodically your OVH DNS via DynHost. Mainly inspired by DynHost script given by OVH but (now offline).
+Homemade script similar to update periodically your OVH DNS via DynHost. Mainly inspired by DynHost script given by OVH (but now offline).
 New version by zwindler (zwindler.fr/wordpress)
 
 ## Cron
@@ -7,7 +7,16 @@ Use with cron to launch periodicaly
 
 ```
 crontab -e
-  00 * * * * /usr/local/dynhost
+  00 * * * * /usr/local/dynhost/dynhost
+```
+
+## Config file
+
+You can use the sample config file given (dynhost.sample.cfg). Rename it to dynhost.cfg and change the variables to meet your own parameters. Use cron this way.
+
+```
+crontab -e
+  00 * * * * /usr/local/dynhost/dynhost /usr/local/dynhost/dynhost.cfg
 ```
 
 ##History
