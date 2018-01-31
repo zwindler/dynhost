@@ -40,7 +40,7 @@ if [ "$IP" ]; then
   if [ "$OLDIP" != "$IP" ]; then
     echo -n "Old IP: [$OLDIP]" >> $LOG_FILE
     echo -n "New IP: [$IP]" >> $LOG_FILE
-    wget -q -O - 'http://www.ovh.com/nic/update?system=dyndns&hostname='$HOST'&myip='$IP --user=$LOGIN --password=$PASSWORD >> $LOG_FILE
+    curl "http://www.ovh.com/nic/update?system=dyndns&hostname=$HOST&myip=$IP" -u $LOGIN:$PASSWORD
   else
     echo "Notice: IP $HOST [$OLDIP] is identical to WAN [$IP]! No update required." >> $LOG_FILE
   fi
