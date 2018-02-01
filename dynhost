@@ -23,7 +23,7 @@
 CONFIG_FILE=$1
 
 if [ -f $CONFIG_FILE ]; then
-  source $1
+  source $CONFIG_FILE
 else 
   HOST='DYNHOST.VOTREDOMAIN.FR'
   LOGIN='VOTREDOMAINOVH-LOGIN'
@@ -37,7 +37,7 @@ echo `date` >> $LOG_FILE
 IP=`curl https://4.ifcfg.me`
 OLDIP=`dig +short $HOST`
 
-if [ $DEBUG >= 1 ]; then
+if [ $DEBUG -ge 1 ]; then
   echo $CONFIG_FILE $HOST $LOGIN $PASSWORD $LOG_FILE
 fi
 
