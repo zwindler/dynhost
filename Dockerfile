@@ -14,4 +14,4 @@ ENV LOG_FILE /usr/local/dynhost/dynhost.log
 ENV PATH /usr/local/dynhost:$PATH
 
 #Run script. 
-ENTRYPOINT ["/usr/local/dynhost/dynhost", "/usr/local/dynhost/dynhost.cfg"]
+ENTRYPOINT ["/usr/local/dynhost/dynhost", "/usr/local/dynhost/conf.d/dynhost.cfg"]
