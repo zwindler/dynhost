@@ -3,7 +3,7 @@ LABEL zwindler.dynhost.version="0.1"
 LABEL maintainer="zwindler"
 
 RUN apk add --no-cache curl bind-tools && mkdir -p /usr/local/dynhost
-COPY ../dynhost /usr/local/dynhost/dynhost
+COPY dynhost /usr/local/dynhost/dynhost
 
 #If dynhost.cfg was specified at docker run, should superseed any ENV
 #If not, ENV statements should be used
