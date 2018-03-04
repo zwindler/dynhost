@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 ################################################################################
 #This file is part of zwindler/dynhost
 #Copyright (C) 2016  Denis GERMAIN
