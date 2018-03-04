@@ -34,9 +34,8 @@ echo `date` >> $LOG_FILE
 
 IP=`curl https://4.ifcfg.me`
 OLDIP=`dig +short $HOST`
-
-if [ $DEBUG -ge 1 ]; then
-  echo $CONFIG_FILE $HOST $LOGIN $PASSWORD $LOG_FILE
+if [ -n "$DEBUG" ]; then
+  echo "DEBUG ENV: " $CONFIG_FILE $HOST $LOGIN $PASSWORD $LOG_FILE
 fi
 
 if [ "$IP" ]; then
