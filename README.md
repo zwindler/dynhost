@@ -80,6 +80,7 @@ data:
 * I also got rid of ipcheck.py dependancy thanks to mafiaman42
 * I did a code cleanup and switching from /bin/sh to /bin/bash to work around a bug in Debian Jessie ("if" clause not working as expected)
 * Lastly, this script uses curl to get the public IP, and then uses wget to update DynHost entry in OVH DNS
+* Added a Docker version of the script for more portability (and ARM devices support)
 
 ## More information
 
