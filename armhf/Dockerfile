@@ -1,4 +1,4 @@
-FROM arm32v6/alpine
+FROM armhf/alpine
 LABEL zwindler.dynhost.version="0.1"
 LABEL maintainer="zwindler"
 
