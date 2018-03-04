@@ -25,9 +25,7 @@ CONFIG_FILE=$1
 if [ -f $CONFIG_FILE ]; then
   source $CONFIG_FILE
 else 
-  HOST='DYNHOST.VOTREDOMAIN.FR'
-  LOGIN='VOTREDOMAINOVH-LOGIN'
-  PASSWORD='VOTREMDP'
+  echo "$CONFIG_FILE not found, using $HOST, $LOGIN and given PASSWORD ENV"
   LOG_FILE='/usr/local/dynhost/dynhost.log'
 fi
 
