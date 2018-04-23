@@ -19,6 +19,20 @@ crontab -e
   00 * * * * /usr/local/dynhost/dynhost /usr/local/dynhost/dynhost.cfg
 ```
 
+## Local IP resolution method
+
+Main resolution method is using opendns DNS service, but if for some reason, you can't use an external DNS resolver (if external DNS resolution is blocked / port 53 blocked), you can use the alternate method using ifconfig.me HTTP service.
+
+Just add TRUE in the command line as 2nd argument
+
+```
+/usr/local/dynhost/dynhost /usr/local/dynhost/dynhost.cfg TRUE
+```
+
+A word of caution though, I switched multiple times from ifconfig.me to ifcfg.4 to ifconfig.me back again because these services tend to close/be overloaded. 
+
+DNS resolution using openDNS should be a better bet (see https://github.com/zwindler/dynhost/issues/1 discussion for more information)
+
 ## Docker image
 
 I'm also building an Alpine docker image that can be used to update your DynHost records. You can use the Docker image both with configuration or environment variables. I'll give you 2 examples :
@@ -31,7 +45,7 @@ For ARM (on a ARM host...)
 docker build -t zwindler/dynhost:arm71 .
 ```
 
-For amd64 (on a x86_64 node)
+For amd64 (on a x86\_64 node)
 
 ```
 docker build -t zwindler/dynhost .

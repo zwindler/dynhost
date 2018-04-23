@@ -33,10 +33,12 @@ fi
 echo '----------------------------------' >> $LOG_FILE
 echo `date` >> $LOG_FILE
 
-if [ -z ${DONTUSEDNS+x} ]; then
-  IP=`dig +short myip.opendns.com @resolver1.opendns.com`
-else
+if [ -n "$DONTUSEDNS" ]; then
+  echo -n "DONTUSEDNS=$DONTUSEDNS => using ifconfig.me HTTP server to get local IP"
   IP=`curl http://ifconfig.me/`
+else
+  echo -n "DONTUSEDNS=$DONTUSEDNS => using opendns DNS service to get local IP"
+  IP=`dig +short myip.opendns.com @resolver1.opendns.com`
 fi  
 OLDIP=`dig +short $HOST`
 if [ -n "$DEBUG" ]; then
