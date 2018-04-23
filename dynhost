@@ -21,6 +21,7 @@
 #CHANGE: « HOST », « LOGIN », « PASSWORD » and « LOG_FILE » to reflect YOUR account variables
 #OR: use, in argument, a custom file contains « HOST », « LOGIN », « PASSWORD » and « LOG_FILE »
 CONFIG_FILE=$1
+DONTUSEDNS=$2
 
 if [ -f $CONFIG_FILE ]; then
   . $CONFIG_FILE
@@ -32,7 +33,11 @@ fi
 echo '----------------------------------' >> $LOG_FILE
 echo `date` >> $LOG_FILE
 
-IP=`curl http://ifconfig.me/`
+if [ -z ${DONTUSEDNS+x} ]; then
+  IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+else
+  IP=`curl http://ifconfig.me/`
+fi  
 OLDIP=`dig +short $HOST`
 if [ -n "$DEBUG" ]; then
   echo "DEBUG ENV: " $CONFIG_FILE $HOST $LOGIN $PASSWORD $LOG_FILE
