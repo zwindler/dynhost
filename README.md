@@ -23,6 +23,20 @@ crontab -e
 
 I'm also building an Alpine docker image that can be used to update your DynHost records. You can use the Docker image both with configuration or environment variables. I'll give you 2 examples :
 
+### Build it
+
+For ARM (on a ARM host...)
+
+```
+docker build -t zwindler/dynhost:arm71 .
+```
+
+For amd64 (on a x86_64 node)
+
+```
+docker build -t zwindler/dynhost .
+```
+
 ### Docker with variables
 
 Don't forget to change HOST, LOGIN and PASSWORD in command line
