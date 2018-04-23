@@ -23,7 +23,7 @@
 CONFIG_FILE=$1
 
 if [ -f $CONFIG_FILE ]; then
-  source $CONFIG_FILE
+  . $CONFIG_FILE
 else 
   echo "$CONFIG_FILE not found, using $HOST, $LOGIN and given PASSWORD ENV"
   LOG_FILE='/usr/local/dynhost/dynhost.log'
@@ -32,7 +32,7 @@ fi
 echo '----------------------------------' >> $LOG_FILE
 echo `date` >> $LOG_FILE
 
-IP=`curl https://4.ifcfg.me`
+IP=`curl http://ifconfig.me/`
 OLDIP=`dig +short $HOST`
 if [ -n "$DEBUG" ]; then
   echo "DEBUG ENV: " $CONFIG_FILE $HOST $LOGIN $PASSWORD $LOG_FILE
